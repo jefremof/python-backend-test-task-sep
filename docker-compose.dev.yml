@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    entrypoint: ["/app/dev-start.sh"]
+
+  db:
+    ports:
+      - "5432:5432"
